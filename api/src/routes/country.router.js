@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const { getCountryApi } = require("../controllers/country.controller");
+const { getCountryApi,getCountryById } = require("../controllers/country.controller");
 
 router.get("/", async (req, res) => {
   try {
@@ -11,11 +11,10 @@ router.get("/", async (req, res) => {
     console.log(error);
   }
 });
-router.get("/countries/:id", async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const response =
-    (await getCountryById(id));
+    const response =await getCountryById(id);
     res.status(200).send(response);
   } catch (error) {
     res.status(400).send(error.message);
