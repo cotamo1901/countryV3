@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const { getCountryApi,getCountryById } = require("../controllers/country.controller");
+const { getCountryApi,getCountryById,getCountriesByName } = require("../controllers/country.controller");
 
 router.get("/", async (req, res) => {
   try {
@@ -21,23 +21,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.get("/countrie/name",async(req,res)=>{
-  const {name}=req.query
-  try {
-    const countries = await Country.findAll({
-      where: Sequelize.where(Sequelize.fn('LOWER', Sequelize.col('name')), 'LIKE', `%${name.toLowerCase()}%`),
+router.get('/name',getCountriesByName);
 
-    })
-    if (countries.length > 0) {
-      res.json(countries);
-    } else {
-      res.status(404).json({ error: 'No countries found' });
-    }
-    
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-})
 
 module.exports = router;
