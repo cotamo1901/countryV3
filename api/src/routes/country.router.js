@@ -3,6 +3,8 @@ const router = express.Router();
 
 const { getCountryApi,getCountryById,getCountriesByName } = require("../controllers/country.controller");
 
+router.get('/name',getCountriesByName);
+
 router.get("/", async (req, res) => {
   try {
     const country = await getCountryApi();
@@ -21,7 +23,6 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.get('/name',getCountriesByName);
 
 
 module.exports = router;
