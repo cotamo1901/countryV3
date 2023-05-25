@@ -37,16 +37,14 @@ const getCountryById = async (id) => {
 
 const getCountriesByName = async (req, res) => {
   const { name } = req.query;
+  console.log('name :>> ', name);
   try {
-    const countries = await Country.findAll({
-      where: {
-        name: {
-          [Sequelize.Op.iLike]: `%${name}%`,
-        },
-      },
-    });
+    const countries = await getCountryApi();
+
     if (countries.length > 0) {
-      res.json(countries);
+      const ctr = countries.find((ele) => ele.name.common.toString() === name.toString());
+      // console.log('countries :>> ', countries);
+      res.status(200).json({ctr})
     } else {
       res.status(404).json({ error: "No countries found" });
     }

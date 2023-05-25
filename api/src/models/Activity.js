@@ -15,6 +15,8 @@ module.exports = (sequelize) => {
     difficulty: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      max :5,
+      min:1
     },
     duration: {
       type: DataTypes.INTEGER,
@@ -23,5 +25,7 @@ module.exports = (sequelize) => {
       type: DataTypes.ENUM("Verano", "Otoño", "Primavera", "Invierno"),
       allowNull: false,
     },
+ 
+    
   });
 };
