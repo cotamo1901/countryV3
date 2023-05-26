@@ -1,5 +1,7 @@
 const { ValidationErrorItemType } = require("sequelize");
 const { Country } = require("../db");
+const fs = require("fs");
+const path = require("path");
 require("dotenv").config();
 const URL_API = process.env.URL_API;
 const { Sequelize } = require("sequelize");
@@ -10,12 +12,14 @@ async function getCountryApi() {
   let data = await response.json();
   data = data.map((country) => ({
     id: country.cca3,
-    name: country.name,
-    flag: country.flag,
-    capital: country.capital,
-    subregion: country.subregion,
-    area: country.area,
-    population: country.population,
+      name: country.translations.spa.common,
+      flagImage: country.flags[1],
+      continent: country.region,
+      capital:
+        country.capital !== undefined ? country.capital[0] : "Doesn't have",
+      subregion: country.subregion,
+      surface: country.area,
+      population: country.population,
   }));
   return data;
 }
@@ -42,8 +46,8 @@ const getCountriesByName = async (req, res) => {
     const countries = await getCountryApi();
 
     if (countries.length > 0) {
-      const ctr = countries.find((ele) => ele.name.common.toString() === name.toString());
-      // console.log('countries :>> ', countries);
+      const ctr = countries.find((ele) => ele.name.toString() === name.toString());
+    
       res.status(200).json({ctr})
     } else {
       res.status(404).json({ error: "No countries found" });
@@ -53,5 +57,13 @@ const getCountriesByName = async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
+const saveApidata = async (req, res) => {
+  var data = await getCountryApi();
+  const created = await Country.bulkCreate(data);
+};
 
-module.exports = { getCountryApi, getCountryById, getCountriesByName };
+
+
+
+
+module.exports = { getCountryApi, getCountryById, getCountriesByName,saveApidata };
