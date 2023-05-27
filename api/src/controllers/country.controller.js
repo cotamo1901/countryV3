@@ -10,14 +10,14 @@ async function getCountryDataFromDB() {
     host: "localhost",
     database: "countries",
     password: "Soni2GLP",
-    port: 5432, // Puerto por defecto de PostgreSQL
+    port: 5432, 
   });
 
   let data;
 
   try {
     const client = await pool.connect();
-    const query = "SELECT * FROM countries"; // Reemplaza "countries" con el nombre de tu tabla de países
+    const query = "SELECT * FROM countries";
 
     const result = await client.query(query);
     data = result.rows.map((country) => ({
@@ -49,7 +49,7 @@ async function getCountryApi() {
 
   const dbData = await getCountryDataFromDB();
 
-  // Combina los datos de la API y la base de datos
+  
   const combinedData = apiData.map((country) => {
     const dbCountry = dbData.find((c) => c.id === country.cca3);
 
@@ -63,7 +63,7 @@ async function getCountryApi() {
       subregion: country.subregion,
       surface: country.area,
       population: country.population,
-      ...dbCountry, // Agrega los campos adicionales de la base de datos
+      ...dbCountry, 
     };
   });
 
