@@ -60,6 +60,7 @@ const getCountriesByName = async (req, res) => {
 const saveApidata = async (req, res) => {
   var data = await getCountryApi();
   const created = await Country.bulkCreate(data);
+  console.log('create :>> ', created);
 };
 
 
