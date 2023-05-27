@@ -1,17 +1,60 @@
-const { ValidationErrorItemType } = require("sequelize");
+const { Pool } = require("pg");
 const { Country } = require("../db");
-const fs = require("fs");
 const path = require("path");
 require("dotenv").config();
 const URL_API = process.env.URL_API;
-const { Sequelize } = require("sequelize");
+
+async function getCountryDataFromDB() {
+  const pool = new Pool({
+    user: "postgres",
+    host: "localhost",
+    database: "countries",
+    password: "Soni2GLP",
+    port: 5432, // Puerto por defecto de PostgreSQL
+  });
+
+  let data;
+
+  try {
+    const client = await pool.connect();
+    const query = "SELECT * FROM countries"; // Reemplaza "countries" con el nombre de tu tabla de países
+
+    const result = await client.query(query);
+    data = result.rows.map((country) => ({
+      id: country.cca3,
+      name: country.name,
+      flagImage: country.flag_image,
+      continent: country.continent,
+      capital: country.capital || "Doesn't have",
+      subregion: country.subregion,
+      surface: country.surface,
+      population: country.population,
+    }));
+
+    client.release();
+  } catch (error) {
+    console.error("Error fetching data from PostgreSQL:", error);
+    data = [];
+  } finally {
+    await pool.end();
+  }
+
+  return data;
+}
 
 async function getCountryApi() {
   const URL_API = process.env.URL_API;
   const response = await fetch(URL_API);
-  let data = await response.json();
-  data = data.map((country) => ({
-    id: country.cca3,
+  let apiData = await response.json();
+
+  const dbData = await getCountryDataFromDB();
+
+  // Combina los datos de la API y la base de datos
+  const combinedData = apiData.map((country) => {
+    const dbCountry = dbData.find((c) => c.id === country.cca3);
+
+    return {
+      id: country.cca3,
       name: country.translations.spa.common,
       flagImage: country.flags[1],
       continent: country.region,
@@ -20,8 +63,11 @@ async function getCountryApi() {
       subregion: country.subregion,
       surface: country.area,
       population: country.population,
-  }));
-  return data;
+      ...dbCountry, // Agrega los campos adicionales de la base de datos
+    };
+  });
+
+  return combinedData;
 }
 
 const getCountryById = async (id) => {
@@ -41,14 +87,16 @@ const getCountryById = async (id) => {
 
 const getCountriesByName = async (req, res) => {
   const { name } = req.query;
-  console.log('name :>> ', name);
+  console.log("name :>> ", name);
   try {
     const countries = await getCountryApi();
 
     if (countries.length > 0) {
-      const ctr = countries.find((ele) => ele.name.toString() === name.toString());
-    
-      res.status(200).json({ctr})
+      const ctr = countries.find(
+        (ele) => ele.name.toString() === name.toString()
+      );
+
+      res.status(200).json({ ctr });
     } else {
       res.status(404).json({ error: "No countries found" });
     }
@@ -60,11 +108,12 @@ const getCountriesByName = async (req, res) => {
 const saveApidata = async (req, res) => {
   var data = await getCountryApi();
   const created = await Country.bulkCreate(data);
-  console.log('create :>> ', created);
+  console.log("create :>> ", created);
 };
 
-
-
-
-
-module.exports = { getCountryApi, getCountryById, getCountriesByName,saveApidata };
+module.exports = {
+  getCountryApi,
+  getCountryById,
+  getCountriesByName,
+  saveApidata,
+};
