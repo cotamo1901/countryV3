@@ -1,0 +1,121 @@
+:root {
+  --white: #ffffff;
+  --black: #000000;
+  --very-light-pink: #c7c7c7;
+  --text-input-field: #f7f7f7;
+  --hospital-green: #db6b20;
+  --coffe: rgb(158, 121, 99);
+  --sm: 14px;
+  --md: 16px;
+  --lg: 18px;
+  --mx: 32px;
+}
+body {
+  font-family: "Quicksand", sans-serif;
+}
+body {
+  margin: 0;
+}
+.lading {
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+}
+.lading-container {
+  display: grid;
+  justify-content: center;
+  grid-template-rows: auto 1fr auto;
+  width: 300px;
+}
+
+.title {
+  font-size: var(--mx);
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+/* .subtitle {
+  color: var(--very-light-pink);
+  font-size: var(--md);
+  font-weight: 300;
+  margin-bottom: 32px;
+  text-align: center;
+} */
+
+.lading-image {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.prymary-button {
+  color: var(--white);
+  background-color: var(--coffe);
+  border-radius: 8px;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+  font-size: var(--md);
+  font-weight: bold;
+  height: 50px;
+}
+
+.login-button {
+  margin-top: 14px;
+  margin-bottom: 30px;
+}
+
+.prymary-button:hover {
+  background-color: var(--hospital-green);
+  contain-intrinsic-block-size: var(--black);
+}
+
+/**  CSS NavBar **/
+
+.topnav {
+  background-color: var(--black);
+  overflow: hidden;
+}
+
+.topnav a {
+  float: left;
+  color: var(--text-input-field);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: var(--very-light-pink);
+  color: var(--black);
+}
+
+.top a.active {
+  background-color: var(--hospital-green);
+  color: var(--white);
+}
+.searchbar {
+  padding: 14px 16px;
+}
+
+.topnav img {
+  width: 50px;
+  margin-bottom: 48px;
+}
+
+/** Footer **/
+/* 
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: right;
+  gap: 1rem;
+  padding: 0 80px 10px;
+  font-size: 12px;
+  color: rgb(0, 0, 0, 0.6);
+  margin-top: auto;
+}
+ */

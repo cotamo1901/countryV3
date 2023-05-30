@@ -1,5 +1,6 @@
 import './App.css';
-import LadingPage from './views/LadingPage';
+import LadingPage from './views/LadinPage';
+import { Switch, Route } from 'react-router-dom'
 
 function App() {
   return (
@@ -7,9 +8,9 @@ function App() {
         <Route exact path='/'>
             <LadingPage />
         </Route>
-        <Route exact path='/breeds'>
+        {/* <Route exact path='/breeds'>
             <Home/>
-        </Route>
+        </Route> */}
         {/* <Route exact path='/detail/:id'>
             <Detail/>
           </Route>
