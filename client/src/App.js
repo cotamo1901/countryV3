@@ -1,10 +1,25 @@
 import './App.css';
+import LadingPage from './views/LadingPage';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Henry Countries</h1>
-    </div>
+    <Switch>
+        <Route exact path='/'>
+            <LadingPage />
+        </Route>
+        <Route exact path='/breeds'>
+            <Home/>
+        </Route>
+        {/* <Route exact path='/detail/:id'>
+            <Detail/>
+          </Route>
+        <Route exact path='/newBreed'>
+            <CreateForm/>
+        </Route>
+        <Route path="*">
+            <NotFound404 />
+          </Route>  */}
+    </Switch>
   );
 }
 
