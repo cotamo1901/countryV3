@@ -20,18 +20,26 @@ export default function Home() {
           <h1 className="title">Countries</h1>
           <Link to="/"></Link>
 
-          <div className="cities-mod">
-          {
-            cities.map(l=>(
-                <div>
-                    <img className="flag-img" src={l.flagImage}/>
-                    <p>Name:{l.name}</p>
-                    <p>Continent:{l.continent}</p>
+          <div className="cardComp">
+            <div className="cardComp2">
+              <div className="leftCard">
+                <div className="flag">
+                  {cities.map((l) => (
+                    <div className="components-card">
+                      <img className="flag" src={l.flagImage} alt="Flag not found" />
+                      <div className="rightCardB">
+                      <h2>{l.name}</h2>
+                      <div className="items">
+                        <p>Population:{l.population}</p>
+                      <p>Continent:{l.continent}</p>
 
-                   
+                      </div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-            ))
-          }
+              </div>
+            </div>
           </div>
         </div>
       </div>

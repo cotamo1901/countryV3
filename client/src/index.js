@@ -8,6 +8,7 @@ import {Provider} from 'react-redux'
 import store from './redux/store'
 import dotenv from 'dotenv'
 import './assets/styles/styles.css'
+import './assets/styles/Card.css'
 
 dotenv.config()
 
