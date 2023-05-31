@@ -1,3 +1,4 @@
+import { Link } from "./Link";
 export default function LadingPage() {
     return (
         <header>
@@ -11,7 +12,9 @@ export default function LadingPage() {
                 className="lading-image login-button "
               /> */}
     
-              <input type="submit" value="GO!" className="prymary-button" />
+              {/* <input type="submit" value="GO!" className="prymary-button" /> */}
+              <Link to='/home' className="prymary-button">Go!</Link>
+              
               
             </div>
           </div>

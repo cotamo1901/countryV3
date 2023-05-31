@@ -1,3 +1,4 @@
+const axios =require("axios")
 const { Pool } = require("pg");
 const { Country } = require("../db");
 const path = require("path");
@@ -44,13 +45,12 @@ async function getCountryDataFromDB() {
 
 async function getCountryApi() {
   const URL_API = process.env.URL_API;
-  const response = await fetch(URL_API);
-  let apiData = await response.json();
+  const response = await axios.get(URL_API);
 
   const dbData = await getCountryDataFromDB();
 
   
-  const combinedData = apiData.map((country) => {
+  const combinedData = response.data.map((country) => {
     const dbCountry = dbData.find((c) => c.id === country.cca3);
 
     return {
