@@ -136,3 +136,23 @@ body {
   margin-top: auto;
 }
  */
+.cities-mod{
+  display: flex;
+  flex-direction: row;
+  flex-wrap:wrap ;
+  font-size: var(--sm);
+ 
+
+
+  
+  
+}
+
+.cities-mod{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+
+
+} 

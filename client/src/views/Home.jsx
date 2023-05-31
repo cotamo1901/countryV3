@@ -17,19 +17,22 @@ export default function Home() {
     <header>
       <div className="home">
         <div className="home-container">
-          <h1 className="title">Home</h1>
+          <h1 className="title">Countries</h1>
           <Link to="/"></Link>
+
+          <div className="cities-mod">
           {
             cities.map(l=>(
                 <div>
-                    <img src={l.flagImage}/>
-                    <p>Nombre:{l.name}</p>
+                    <img className="flag-img" src={l.flagImage}/>
+                    <p>Name:{l.name}</p>
                     <p>Continent:{l.continent}</p>
 
                    
                 </div>
             ))
           }
+          </div>
         </div>
       </div>
     </header>
