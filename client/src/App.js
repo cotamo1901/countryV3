@@ -3,6 +3,7 @@ import LadingPage from './views/LadinPage';
 import { Switch, Route } from 'react-router-dom'
 import Home from './views/Home';
 
+
 function App() {
   return (
     <Switch>
@@ -12,15 +13,15 @@ function App() {
          <Route exact path='/home'>
             <Home/>
         </Route> 
-        {/* <Route exact path='/detail/:id'>
+         {/* <Route exact path='/detail/:id'>
             <Detail/>
-          </Route>
-        <Route exact path='/newBreed'>
+          </Route> */}
+        {/* <Route exact path='/newBreed'>
             <CreateForm/>
         </Route>
         <Route path="*">
             <NotFound404 />
-          </Route>  */}
+          </Route>   */}
     </Switch>
   );
 }

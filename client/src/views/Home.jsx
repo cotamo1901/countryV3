@@ -1,4 +1,3 @@
-import { Link } from "./Link";
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -13,36 +12,25 @@ export default function Home() {
   useEffect(() => {
     getCountries();
   }, []);
-  return (
-    <header>
-      <div className="home">
-        <div className="home-container">
-          <h1 className="title">Countries</h1>
-          <Link to="/"></Link>
+return(
+    <div>
+        <h1>Home Countries</h1>
+        <input type="text" placeholder="Search.."  />
 
-          <div className="cardComp">
-            <div className="cardComp2">
-              <div className="leftCard">
-                <div className="flag">
-                  {cities.map((l) => (
-                    <div className="components-card">
-                      <img className="flag" src={l.flagImage} alt="Flag not found" />
-                      <div className="rightCardB">
-                      <h2>{l.name}</h2>
-                      <div className="items">
-                        <p>Population:{l.population}</p>
-                      <p>Continent:{l.continent}</p>
+        <div className="card-list">
+            {cities.map(country=>(
+                <div className="country-card" key={country.id}>
+                    <img src={country.flagImage} alt="Flag" />
+                    <h2>{country.name}</h2>
+                    <p>Continente:{country.continent}</p>
 
-                      </div>
-                      </div>
-                    </div>
-                  ))}
+                    
                 </div>
-              </div>
-            </div>
-          </div>
+            ))}
+
         </div>
-      </div>
-    </header>
-  );
-}
+
+
+
+    </div>
+)}
