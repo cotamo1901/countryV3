@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from 'react-router-dom';
-import axios from 'axios'
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
 
 const Home = () => {
   const [countries, setCountries] = useState([]);
@@ -62,17 +62,16 @@ const Home = () => {
     setCurrentPage(1);
   };
 
-  // Filtrar por continente
   const filteredByContinent = filterContinent
     ? countries.filter((country) => country.continent === filterContinent)
     : countries;
 
-  // Filtrar por actividad turística
   const filteredByActivity = filterActivity
-    ? filteredByContinent.filter((country) => country.activity === filterActivity)
+    ? filteredByContinent.filter(
+        (country) => country.activity === filterActivity
+      )
     : filteredByContinent;
 
-  // Ordenar países
   const sortedCountries = (() => {
     if (sortOption === "nameAsc") {
       return filteredByActivity.sort((a, b) => a.name.localeCompare(b.name));
@@ -89,7 +88,10 @@ const Home = () => {
 
   const indexOfLastCountry = currentPage * countriesPerPage;
   const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
-  const currentCountries = sortedCountries.slice(indexOfFirstCountry, indexOfLastCountry);
+  const currentCountries = sortedCountries.slice(
+    indexOfFirstCountry,
+    indexOfLastCountry
+  );
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -98,38 +100,56 @@ const Home = () => {
   return (
     <div>
       <h1>Home Countries</h1>
-      <input onChange={handleSearch} type="text" value={searchCountry} placeholder="Search.." />
+      <input
+        onChange={handleSearch}
+        type="text"
+        value={searchCountry}
+        placeholder="Search.."
+      />
       <button onClick={handleClearSearch}>Clear</button>
-      <div>
-        <label htmlFor="filterContinent">Filter by continent:</label>
-        <select id="filterContinent" value={filterContinent} onChange={handleFilterContinent}>
-          <option value="">All</option>
-          <option value="Africa">Africa</option>
-          <option value="Antarctic">Antarctic</option>
-          <option value="Asia">Asia</option>
-          <option value="Europe">Europe</option>
-          <option value="Americas">Americas</option>
-          <option value="Oceania">Oceania</option>
-        </select>
-      </div>
-      <div>
-        <label htmlFor="filterActivity">Filter by tourist activity:</label>
-        <select id="filterActivity" value={filterActivity} onChange={handleFilterActivity}>
-          <option value="">All</option>
-          <option value="Beaches">Beaches</option>
-          <option value="Mountains">Mountains</option>
-          {/* Other activity options */}
-        </select>
-      </div>
-      <div>
-        <label htmlFor="sortOption">Sort by:</label>
-        <select id="sortOption" value={sortOption} onChange={(e) => handleSort(e.target.value)}>
-          <option value="">None</option>
-          <option value="nameAsc">Name (A-Z)</option>
-          <option value="nameDesc">Name (Z-A)</option>
-          <option value="populationAsc">Population (Ascending)</option>
-          <option value="populationDesc">Population (Descending)</option>
-        </select>
+      <div className="container">
+        <div>
+          <label htmlFor="filterContinent">Filter by continent:</label>
+          <select
+            id="filterContinent"
+            value={filterContinent}
+            onChange={handleFilterContinent}
+          >
+            <option value="">All</option>
+            <option value="Africa">Africa</option>
+            <option value="Antarctic">Antarctic</option>
+            <option value="Asia">Asia</option>
+            <option value="Europe">Europe</option>
+            <option value="Americas">Americas</option>
+            <option value="Oceania">Oceania</option>
+          </select>
+        </div>
+        <div>
+          <label htmlFor="filterActivity">Filter by tourist activity:</label>
+          <select
+            id="filterActivity"
+            value={filterActivity}
+            onChange={handleFilterActivity}
+          >
+            <option value="">All</option>
+            <option value="Beaches">Beaches</option>
+            <option value="Mountains">Mountains</option>
+          </select>
+        </div>
+        <div>
+          <label htmlFor="sortOption">Sort by:</label>
+          <select
+            id="sortOption"
+            value={sortOption}
+            onChange={(e) => handleSort(e.target.value)}
+          >
+            <option value="">None</option>
+            <option value="nameAsc">Name (A-Z)</option>
+            <option value="nameDesc">Name (Z-A)</option>
+            <option value="populationAsc">Population (Ascending)</option>
+            <option value="populationDesc">Population (Descending)</option>
+          </select>
+        </div>
       </div>
       <div className="card-list">
         {currentCountries.map((country) => (
@@ -142,16 +162,21 @@ const Home = () => {
         ))}
       </div>
       {sortedCountries.length > countriesPerPage && (
-        <div>
-          {Array.from({ length: Math.ceil(sortedCountries.length / countriesPerPage) }, (_, index) => (
-            <button
-              key={index + 1}
-              onClick={() => handlePageChange(index + 1)}
-              style={{ fontWeight: currentPage === index + 1 ? "bold" : "normal" }}
-            >
-              {index + 1}
-            </button>
-          ))}
+        <div className="page-container">
+          {Array.from(
+            { length: Math.ceil(sortedCountries.length / countriesPerPage) },
+            (_, index) => (
+              <button
+                key={index + 1}
+                onClick={() => handlePageChange(index + 1)}
+                style={{
+                  fontWeight: currentPage === index + 1 ? "bold" : "normal",
+                }}
+              >
+                {index + 1}
+              </button>
+            )
+          )}
         </div>
       )}
     </div>
