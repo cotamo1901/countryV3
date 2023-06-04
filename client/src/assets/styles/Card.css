@@ -1,28 +1,24 @@
-/* Assuming you have a CSS file linked to your React component */
-/* styles.css */
 
-/* Container styles */
 .container {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
 }
 
-/* Heading styles */
+
 h1 {
   font-size: 24px;
   margin-bottom: 20px;
-  text-align: center; /* Center alignment */
+  text-align: center; 
 }
 
-/* Search input styles */
+
 .input-search {
   margin-bottom: 10px;
   padding: 5px;
   width: 100%;
 }
 
-/* Filter section styles */
 .filter-section {
   display: flex;
   justify-content: space-between;
@@ -32,14 +28,14 @@ h1 {
 
 .filter-label {
   margin-right: 10px;
-  text-align: center; /* Center alignment */
+  text-align: center;
 }
 
 .filter-select {
   padding: 5px;
 }
 
-/* Card styles */
+
 .card-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

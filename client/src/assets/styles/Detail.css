@@ -35,7 +35,7 @@
   font-family: cursive;
 
 
-  /* filter: brightness(.3); */
+  
   background-attachment: fixed;
 }
 .detail-container:hover {
@@ -50,7 +50,7 @@
   content: "";
   width: 104%;
   height: 102%;
-  /* border-radius: 4px; */
+  
   background-image: linear-gradient(
     var(--rotate)
     , #5ddcff, #3c67e3 43%, #4e00c2);

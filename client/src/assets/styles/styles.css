@@ -30,7 +30,7 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  /* filter: brightness(.3); */
+  
   background-attachment: fixed;
   background-image: url("https://p4.wallpaperbetter.com/wallpaper/589/27/606/abstract-blue-text-cgi-typography-world-map-3d-2048x1536-abstract-3d-and-cg-hd-art-wallpaper-preview.jpg");
 }
@@ -68,7 +68,7 @@ body {
   color: var(--white);
   display: inline-block;
   text-align: center;
-  /* background-color: var(--coffe); */
+
   border-radius: 8px;
   border: none;
   width: 100%;
@@ -84,12 +84,12 @@ body {
 }
 
 .prymary-button:hover {
-  /* background-color: var(--hospital-green); */
+  
   color: var(--coffe);
   contain-intrinsic-block-size: var(--black);
 }
 
-/**  CSS NavBar **/
+
 
 .topnav {
   background-color: var(--black);
