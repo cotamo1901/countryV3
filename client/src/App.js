@@ -2,6 +2,7 @@ import './App.css';
 import LadingPage from './views/LadinPage';
 import { Switch, Route } from 'react-router-dom'
 import Home from './views/Home';
+import Detail from './views/Detail';
 
 
 function App() {
@@ -13,9 +14,9 @@ function App() {
          <Route exact path='/home'>
             <Home/>
         </Route> 
-         {/* <Route exact path='/detail/:id'>
+         <Route exact path='/detail/:id' >
             <Detail/>
-          </Route> */}
+          </Route> 
         {/* <Route exact path='/newBreed'>
             <CreateForm/>
         </Route>

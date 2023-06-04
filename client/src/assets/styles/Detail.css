@@ -1,0 +1,75 @@
+:root {
+  --white: #ffffff;
+  --black: #000000;
+  --very-light-pink: #c7c7c7;
+  --text-input-field: #f7f7f7;
+  --hospital-green: #db6b20;
+  --coffe: rgb(158, 121, 99);
+  --sm: 14px;
+  --md: 16px;
+  --lg: 18px;
+  --mx: 100px;
+}
+
+@property --rotate {
+  syntax: "<angle>";
+  initial-value: 132deg;
+  inherits: false;
+}
+.detail-container {
+  background: #191c29;
+  width: 60%;
+  margin:auto;
+  height: auto;
+  padding: 3px;
+  position: relative;
+  border-radius: 6px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5em;
+  color: var(--white);
+  cursor: pointer;
+  font-family: cursive;
+
+
+  /* filter: brightness(.3); */
+  background-attachment: fixed;
+}
+.detail-container:hover {
+  color: rgb(88 199 250 / 100%);
+    transition: color 1s;
+}
+
+
+
+
+.detail-container::before {
+  content: "";
+  width: 104%;
+  height: 102%;
+  /* border-radius: 4px; */
+  background-image: linear-gradient(
+    var(--rotate)
+    , #5ddcff, #3c67e3 43%, #4e00c2);
+    position: absolute;
+    z-index: -1;
+    top: -1%;
+    left: -2%;
+    animation: spin 2.5s linear infinite;
+}
+
+.detail-container a{
+  color:yellow
+}
+
+@keyframes spin {
+  0% {
+    --rotate: 0deg;
+  }
+  100% {
+    --rotate: 360deg;
+  }
+}
