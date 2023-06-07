@@ -3,6 +3,7 @@ import LadingPage from './views/LadinPage';
 import { Switch, Route } from 'react-router-dom'
 import Home from './views/Home';
 import Detail from './views/Detail';
+import FormPage from './views/FormPage'
 
 
 function App() {
@@ -17,12 +18,12 @@ function App() {
          <Route exact path='/detail/:id' >
             <Detail/>
           </Route> 
-        {/* <Route exact path='/newBreed'>
-            <CreateForm/>
-        </Route>
-        <Route path="*">
+        {/* <Route exact path='/form'>
+            <FormPage/>
+        </Route> */}
+        {/* <Route path="*">
             <NotFound404 />
-          </Route>   */}
+          </Route>    */}
     </Switch>
   );
 }

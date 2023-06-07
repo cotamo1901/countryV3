@@ -100,13 +100,15 @@ const Home = () => {
   return (
     <div>
       <h1>Home Countries</h1>
-      <input
-        onChange={handleSearch}
-        type="text"
-        value={searchCountry}
-        placeholder="Search.."
-      />
-      <button onClick={handleClearSearch}>Clear</button>
+      <div className="search-container">
+        <input
+          onChange={handleSearch}
+          type="text"
+          value={searchCountry}
+          placeholder="Search.."
+        />
+        <button onClick={handleClearSearch}>Clear</button>
+      </div>
       <div className="container">
         <div>
           <label htmlFor="filterContinent">Filter by continent:</label>
@@ -124,6 +126,7 @@ const Home = () => {
             <option value="Oceania">Oceania</option>
           </select>
         </div>
+
         <div>
           <label htmlFor="filterActivity">Filter by tourist activity:</label>
           <select
@@ -161,6 +164,7 @@ const Home = () => {
           </div>
         ))}
       </div>
+
       {sortedCountries.length > countriesPerPage && (
         <div className="page-container">
           {Array.from(
