@@ -153,6 +153,11 @@ const Home = () => {
             <option value="populationDesc">Population (Descending)</option>
           </select>
         </div>
+
+      <div className="Form-list">
+
+      <Link to='/form' className="button-form">Create Activity</Link>
+      </div>
       </div>
       <div className="card-list">
         {currentCountries.map((country) => (

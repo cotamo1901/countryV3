@@ -18,9 +18,9 @@ function App() {
          <Route exact path='/detail/:id' >
             <Detail/>
           </Route> 
-        {/* <Route exact path='/form'>
+        <Route exact path='/form'>
             <FormPage/>
-        </Route> */}
+        </Route>
         {/* <Route path="*">
             <NotFound404 />
           </Route>    */}
