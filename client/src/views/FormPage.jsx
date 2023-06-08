@@ -7,7 +7,7 @@ import {
   filterbyContinent,
   filterSelectedCountries,
   orderCards,
-  getCountries as getCountriesAction,
+  getCountries,
 } from "../redux/actions.js";
 
 export const Form = (props) => {
@@ -274,8 +274,8 @@ export function mapDispatchToProps(dispatch) {
     filterSelectedCountries: function (countriesArray) {
       dispatch(filterSelectedCountries(countriesArray));
     },
-    getCountries: function () {
-      dispatch(getCountriesAction());
+    getCountries: function (userData) {
+      dispatch(getCountries(userData));
     },
   };
 }
@@ -285,14 +285,6 @@ export function mapStateToProps(state) {
     countries: state.countries,
   };
 }
-export const GET_COUNTRIES = "GET_COUNTRIES";
-export function getCountries() {
-  return function (dispatch) {
-    axios
-      .get(`http://localhost:3001/countries`)
-      .then((response) => response.data)
-      .then((data) => dispatch({ type: GET_COUNTRIES, payload: data }));
-  };
-}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Form);
+
