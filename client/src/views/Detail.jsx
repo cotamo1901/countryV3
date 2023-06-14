@@ -16,6 +16,7 @@ const Detail = () => {
   }, [id]);
 
   return (
+    <div className="detail-page">
     <div className="detail-container">
       <div>Code: {country.id}</div>
       <div>Name: {country.name}</div>
@@ -33,6 +34,7 @@ const Detail = () => {
       {!country.activities?.length && <div>There aren't any activities to show</div>}
       {country.activities && country.activities.map((activity) => <div>{activity.name}</div>)}
       <Link to={`/home/`}>Back</Link>
+    </div>
     </div>
   );
 };

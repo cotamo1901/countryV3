@@ -62,7 +62,16 @@
 }
 
 .detail-container a{
-  color:yellow
+  color:yellow;
+  
+  
+}
+.detail-page {
+  background-color:black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
 @keyframes spin {
@@ -73,3 +82,4 @@
     --rotate: 360deg;
   }
 }
+
