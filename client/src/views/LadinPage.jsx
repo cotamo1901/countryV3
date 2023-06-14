@@ -7,7 +7,7 @@ export default function LadingPage() {
               <h1 className="title">¡PI COUNTRIES!</h1>
 
             
-              <Link to='/home' className="prymary-button">Go!</Link>
+              <Link to='/countries' className="prymary-button">Go!</Link>
               
               
             </div>

@@ -156,7 +156,7 @@ const Home = () => {
 
       <div className="Form-list">
 
-      <Link to='/form' className="button-form">Create Activity</Link>
+      <Link to='/activity' className="button-form">Create Activity</Link>
       </div>
       </div>
       <div className="card-list">
@@ -165,7 +165,7 @@ const Home = () => {
             <img src={country.flagImage} alt="Flag" />
             <h2>{country.name}</h2>
             <p>Continent: {country.continent}</p>
-            <Link className="link-card" to={`/detail/${country.id}`}>Details</Link>
+            <Link className="link-card" to={`/countries/${country.id}`}>Details</Link>
           </div>
         ))}
       </div>

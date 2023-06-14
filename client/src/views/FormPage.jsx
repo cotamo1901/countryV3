@@ -301,7 +301,7 @@ export const Form = (props) => {
 
           <input type="submit" value="Save Activity" />
 
-          <Link to={`/home/`}>Home</Link>
+          <Link to={`/countries/`}>Home</Link>
         </fieldset>
       </form>
     </div>

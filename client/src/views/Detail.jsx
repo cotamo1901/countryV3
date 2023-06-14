@@ -33,7 +33,7 @@ const Detail = () => {
       </div>
       {!country.activities?.length && <div>There aren't any activities to show</div>}
       {country.activities && country.activities.map((activity) => <div>{activity.name}</div>)}
-      <Link to={`/home/`}>Back</Link>
+      <Link to={`/countries/`}>Back</Link>
     </div>
     </div>
   );
