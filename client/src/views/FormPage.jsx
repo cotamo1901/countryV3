@@ -92,7 +92,7 @@ export const Form = (props) => {
     e.preventDefault();
     setTried(1);
     setErrors(validation(activity));
-
+  
     if (
       !validation(activity).countries &&
       !validation(activity).difficulty &&
@@ -101,21 +101,26 @@ export const Form = (props) => {
       !validation(activity).season
     ) {
       setTried(0);
-
-      await axios.post(`http://localhost:3001/activities/`, activity);
-
-      setActivity({
-        ...activity,
-        name: "",
-        season: "",
-        duration: "",
-        difficulty: "",
-        countries: [],
-      });
-      setTo([]);
-      props.getCountries();
+  
+      try {
+        await axios.post(`http://localhost:3001/activities/`, activity);
+        console.log('Activity created successfully!');
+        
+        setActivity({
+          name: "",
+          difficulty: 0,
+          duration: "",
+          season: "",
+          countries: [],
+        });
+        setTo([]);
+        props.getCountries();
+      } catch (error) {
+        console.log('Error creating activity:', error);
+      }
     }
   };
+  
 
   const changeActivity = (e) => {
     setActivity({ ...activity, [e.target.name]: e.target.value });
