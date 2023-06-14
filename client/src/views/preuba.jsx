@@ -13,10 +13,11 @@ import {
 
 export const Form = (props) => {
   const [selectedContinent, setSelectedContinent] = React.useState([]);
-
+  const [selectedValue, setSelectValue] = React.useState(""); //prueba
   const [selectedCountries, setSelectedCountries] = React.useState([]);
   const [unSelectedCountries, setUnSelectedCountries] = React.useState([]);
-
+  const [responseContinent,setResponseContinent] =React.useState("")
+  const [continentInfo, setContinentInfo] = React.useState({});
   const [tried, setTried] = React.useState(0);
   const [activity, setActivity] = React.useState({
     name: "",
@@ -42,15 +43,39 @@ export const Form = (props) => {
       [name]: checked,
     }));
 
-
+    // Fetch continent information when checkbox is checked
     if (checked) {
-    const response = await axios.get(`http://localhost:3001/countries/continent?continent=${name}`);
-    const countries = response.data.map((country) => country.name);
-    setTo(countries);
-  } else {
-    setTo([]);
-  }
-};
+      const res = await axios(
+        `http://localhost:3001/countries/continent?continent=${name}`
+      );
+      setContinentInfo((prevContinentInfo) => ({
+        ...prevContinentInfo,
+        [name]: res.data,
+      }));
+    } else {
+      // Remove continent information when checkbox is unchecked
+      setContinentInfo((prevContinentInfo) => {
+        const updatedInfo = { ...prevContinentInfo };
+        delete updatedInfo[name];
+        return updatedInfo;
+      });
+    }
+  };
+
+  // Render continent information
+  const renderContinentInfo = () => {
+    return Object.entries(continentInfo).map(([continent, countries]) => (
+      <div key={continent}>
+        <h2>{continent}</h2>
+        <ul>
+          {countries.map((country) => (
+            <li key={country.id}>{country.name}</li>
+          ))}
+        </ul>
+      </div>
+    ));
+  };
+
 
   const [to, setTo] = React.useState([]);
 
@@ -154,6 +179,10 @@ export const Form = (props) => {
         <fieldset className="bord-form">
           <br />
           <fieldset>
+        <legend>Selected Continents Information</legend>
+        {renderContinentInfo()}
+      </fieldset>
+          <fieldset>
             <label htmlFor="name">Name</label>
             <input
               placeholder="Activity Name"
@@ -230,12 +259,12 @@ export const Form = (props) => {
 
             <div>
               <input
-              type="checkbox"
-              id="Europe"
-              name="Europe"
-              value="Europe"
-              onChange={handleCheckboxChange}
-              checked={selectedContinent.Europe || false}
+                type="checkbox"
+                id="Europe"
+                name="Europe"
+                value="Europe"
+                onChange={handleCheckboxChange}
+                checked={selectedContinent.Europe || false}
               />
               <label htmlFor="Europe">Europe</label>
             </div>
@@ -257,7 +286,7 @@ export const Form = (props) => {
                 name="Antarctic"
                 value="Antarctic"
                 onChange={handleCheckboxChange}
-                checked={selectedContinent.Antarctic || false}
+                checked={selectedContinent.Antartic || false}
               />
               <label htmlFor="Antartic">Antarctic</label>
             </div>
@@ -290,7 +319,7 @@ export const Form = (props) => {
                 name="Oceania"
                 value="Oceania"
                 onChange={handleCheckboxChange}
-                checked={selectedContinent.Oceania || false}
+                checked={selectedContinent.oceania || false}
               />
               <label htmlFor="Oceania">Oceania</label>
             </div>
