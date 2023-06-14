@@ -117,9 +117,14 @@ export const Form = (props) => {
     <div className="container-form">
       <h1 className="title-form">Create Activity</h1>
       <form onSubmit={handleSubmit}>
+        <fieldset className="bord-form">
+          <br />
+      <fieldset>
         <label htmlFor="name">Name</label>
         <input type="text" id="name" name="name" onChange={changeActivity} />
-
+        </fieldset>
+        <br />
+        <fieldset>
         <label htmlFor="difficulty">Difficulty</label>
         <select
           name="difficulty"
@@ -133,6 +138,9 @@ export const Form = (props) => {
           <option value="4">4</option>
           <option value="5">5</option>
         </select>
+        </fieldset>
+        <br />
+        <fieldset>
         <label>Season</label>
         <select name="season" onChange={changeActivity} value={activity.season}>
           <option value="Select">Please select</option>
@@ -141,7 +149,9 @@ export const Form = (props) => {
           <option value="Summer">Summer</option>
           <option value="Autumm">Autumn</option>
         </select>
-
+        </fieldset>
+        <br />
+        <fieldset>
         <label>Duration</label>
         <input
           type="text"
@@ -150,7 +160,9 @@ export const Form = (props) => {
           name="duration"
           value={activity.duration}
         />
+        </fieldset>
         <div>
+          
           <div width="40%"> {errors.name && <div>{errors.name}</div>}</div>
           <div width="15%">
             {" "}
@@ -162,6 +174,7 @@ export const Form = (props) => {
             {errors.duration && <div>{errors.duration}</div>}
           </div>
         </div>
+        <br />
 
         <fieldset>
           <legend>Select a continent</legend>
@@ -233,7 +246,8 @@ export const Form = (props) => {
             <label htmlFor="Oceania">Oceania</label>
           </div>
         </fieldset>
-
+        <fieldset>
+          <br />
         <label htmlFor="to">Select countries:</label>
         <select
           id="to"
@@ -253,11 +267,14 @@ export const Form = (props) => {
             <option value="nothing">Nothing here yet!</option>
           )}
         </select>
+        </fieldset>
+
 
         <input type="button" onClick={changeTo} value=">>" />
         <input type="button" onClick={changeBack} value="<<" />
 
         <input type="submit" value="Save Activity" />
+        </fieldset>
       </form>
     </div>
   );
