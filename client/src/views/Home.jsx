@@ -98,7 +98,7 @@ const Home = () => {
   };
 
   return (
-    <div>
+    <div className="container-home">
       <h1>Home Countries</h1>
       <div className="search-container">
         <input
@@ -165,7 +165,7 @@ const Home = () => {
             <img src={country.flagImage} alt="Flag" />
             <h2>{country.name}</h2>
             <p>Continent: {country.continent}</p>
-            <Link to={`/detail/${country.id}`}>Details</Link>
+            <Link className="link-card" to={`/detail/${country.id}`}>Details</Link>
           </div>
         ))}
       </div>

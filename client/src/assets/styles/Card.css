@@ -17,6 +17,7 @@ h1 {
   margin-bottom: 10px;
   padding: 5px;
   width: 100%;
+  
 }
 
 .filter-section {
@@ -40,20 +41,31 @@ h1 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 20px;
+
+  color:yellow;
+  
+  
 }
 
 .country-card {
   border: 1px solid #ccc;
   padding: 10px;
   text-align: center;
+  background-image: url("https://s1.best-wallpaper.net/wallpaper/m/1910/Abstract-planet-earth-map-shine_m.jpg");
+
+  
 }
 
 .country-card img {
   max-width: 100%;
   height: auto;
   margin-bottom: 10px;
+  
 }
 
+.link-card{
+  color: aqua;
+}
 
 .pagination {
   display: flex;
@@ -82,6 +94,7 @@ h1 {
   display: flex;
   justify-content: center; 
   align-items: center; 
+  
 }
 .container > div {
   margin-right: 10px; 
@@ -102,4 +115,27 @@ h1 {
   display: flex;
   justify-content: center;
   margin-top: 10px; 
+}
+
+.container-home{
+  color: yellow;
+  background-color: black;
+}
+
+.button-form{
+  display:inline;
+  border:0;
+  padding:0;
+  margin:0;
+  text-decoration:underline;
+  background:none;
+  color:yellow;
+  font-family: arial, sans-serif;
+  font-size: 1em;
+  line-height:1em;
+}
+.button-form:hover{
+  text-decoration:none;
+  color:aqua;
+  cursor:pointer
 }

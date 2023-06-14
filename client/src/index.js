@@ -10,6 +10,9 @@ import store from './redux/store'
 import dotenv from 'dotenv'
 import './assets/styles/styles.css'
 import './assets/styles/Card.css'
+import './assets/styles/Form.css'
+
+
 
 dotenv.config()
 

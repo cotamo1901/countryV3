@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "../assets/styles/Form.css";
 import { connect } from "react-redux";
 import validation from "./validation";
+
 import {
   filterbyContinent,
   filterSelectedCountries,
@@ -114,8 +114,8 @@ export const Form = (props) => {
   }, []);
 
   return (
-    <div className="container">
-      <h1>Create Activity</h1>
+    <div className="container-form">
+      <h1 className="title-form">Create Activity</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">Name</label>
         <input type="text" id="name" name="name" onChange={changeActivity} />
@@ -238,7 +238,7 @@ export const Form = (props) => {
         <select
           id="to"
           name="to"
-          size="10"
+          size="5"
           multiple
           value={unSelectedCountries}
           onChange={handleSelectedCountries}
