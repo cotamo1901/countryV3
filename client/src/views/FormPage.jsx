@@ -12,10 +12,11 @@ import {
 } from "../redux/actions.js";
 
 export const Form = (props) => {
-  const [selectedContinent, setSelectedContinent] = React.useState("");
+  const [selectedContinent, setSelectedContinent] = React.useState([]);
   const [selectedValue, setSelectValue] = React.useState(""); //prueba
   const [selectedCountries, setSelectedCountries] = React.useState([]);
   const [unSelectedCountries, setUnSelectedCountries] = React.useState([]);
+  const [responseContinent,setResponseContinent] =React.useState("")
   const [tried, setTried] = React.useState(0);
   const [activity, setActivity] = React.useState({
     name: "",
@@ -31,6 +32,24 @@ export const Form = (props) => {
     duration: "",
     season: "",
   });
+
+
+  
+   const handleCheckboxChange =async (event) => {
+    const { name, checked } = event.target;
+    setSelectedContinent((prevSelectedOptions) => ({
+      ...prevSelectedOptions,
+      [name]: checked,
+  
+    }));
+    console.log('checked :>> ', checked);
+    console.log('name :>> ', name);
+    console.log('selectedContinent :>> ', selectedContinent);
+    const res = await axios(`http://localhost:3001/countries/continent?continent=${name}`)
+    console.log('res :>> ', res);
+  };
+ 
+
 
   const [to, setTo] = React.useState([]);
 
@@ -105,25 +124,27 @@ export const Form = (props) => {
     }
   };
   const handleSelectedCountries = (e) => {
-    const options = e.target.options;
-    const selected = [];
-    for (let i = 0; i < options.length; i++) {
-      if (options[i].selected && options[i].value !== "Nothing") {
-        selected.push(options[i].value);
-      }
-    }
+    const options = Array.from(e.target.options);
+    const selected = options
+      .filter((option) => option.selected && option.value !== "Nothing")
+      .map((option) => option.value);
+    const unselected = options
+      .filter((option) => !option.selected && option.value !== "Nothing")
+      .map((option) => option.value);
+
     setSelectedCountries(selected);
+    setUnSelectedCountries(unselected);
   };
 
   React.useEffect(() => {
     props.getCountries();
   }, []);
 
-  // function formPrueba(e) {
-  //   e.preventDefault();
-  //   console.log("e.target.name :>> ", e.target.name);
-  //   console.log("e.target.value :>> ", e.target.value);
-  // }
+  function formPrueba(e) {
+    e.preventDefault();
+    console.log("e.target.name :>> ", e.target.name);
+    console.log("e.target.value :>> ", e.target.value);
+  }
 
   return (
     <div className="container-form">
@@ -208,67 +229,67 @@ export const Form = (props) => {
 
             <div>
               <input
-                type="radio"
+                type="checkbox"
                 id="Europe"
-                name="continent"
+                name="Europe"
                 value="Europe"
-                onChange={handleRadio}
-                checked={selectedContinent === "Europe"}
+                onChange={handleCheckboxChange}
+                checked={selectedContinent.Europe || false}
               />
               <label htmlFor="Europe">Europe</label>
             </div>
             <div>
               <input
-                type="radio"
+                type="checkbox"
                 id="Americas"
-                name="continent"
+                name="Americas"
                 value="Americas"
-                onChange={handleRadio}
-                checked={selectedContinent === "Americas"}
+                onChange={handleCheckboxChange}
+                checked={selectedContinent.Americas || false}
               />
               <label htmlFor="Americas">Americas</label>
             </div>
             <div>
               <input
-                type="radio"
+                type="checkbox"
                 id="Antarctic"
-                name="continent"
+                name="Antarctic"
                 value="Antarctic"
-                onChange={handleRadio}
-                checked={selectedContinent === "Antarctic"}
+                onChange={handleCheckboxChange}
+                checked={selectedContinent.Antartic || false}
               />
               <label htmlFor="Antartic">Antarctic</label>
             </div>
             <div>
               <input
-                type="radio"
+                type="checkbox"
                 id="Africa"
-                name="continent"
+                name="Africa"
                 value="Africa"
-                onChange={handleRadio}
-                checked={selectedContinent === "Africa"}
+                onChange={handleCheckboxChange}
+                checked={selectedContinent.Africa || false || false}
               />
               <label htmlFor="Africa">Africa</label>
             </div>
             <div>
               <input
-                type="radio"
+                type="checkbox"
                 id="Asia"
-                name="continent"
+                name="Asia"
                 value="Asia"
-                onChange={handleRadio}
-                checked={selectedContinent === "Asia"}
+                onChange={handleCheckboxChange}
+                checked={selectedContinent.Asia || false || false}
               />
               <label htmlFor="Asia">Asia</label>
             </div>
             <div>
               <input
-                type="radio"
+                type="checkbox"
                 id="Oceania"
-                name="continent"
+                name="Oceania"
                 value="Oceania"
-                onChange={handleRadio}
-                checked={selectedContinent === "Oceania"}
+                onChange={handleCheckboxChange}
+                checked={selectedContinent.oceania || false}
               />
               <label htmlFor="Oceania">Oceania</label>
             </div>

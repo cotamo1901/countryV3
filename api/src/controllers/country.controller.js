@@ -1,4 +1,4 @@
-const axios =require("axios")
+const axios = require("axios");
 const { Pool } = require("pg");
 const { Country } = require("../db");
 const path = require("path");
@@ -11,7 +11,7 @@ async function getCountryDataFromDB() {
     host: "localhost",
     database: "countries",
     password: "Soni2GLP",
-    port: 5432, 
+    port: 5432,
   });
 
   let data;
@@ -49,7 +49,6 @@ async function getCountryApi() {
 
   const dbData = await getCountryDataFromDB();
 
-  
   const combinedData = response.data.map((country) => {
     const dbCountry = dbData.find((c) => c.id === country.cca3);
 
@@ -63,7 +62,7 @@ async function getCountryApi() {
       subregion: country.subregion,
       surface: country.area,
       population: country.population,
-      ...dbCountry, 
+      ...dbCountry,
     };
   });
 
@@ -111,9 +110,27 @@ const saveApidata = async (req, res) => {
   console.log("create :>> ", created);
 };
 
+const getCountryByContinent = async (continent) => {
+  console.log("name :>> ", continent);
+  try {
+    const countries = await getCountryApi();
+    if (continent) {
+      const response = countries.filter(
+        (c) => c.continent.toUpperCase() === continent.toUpperCase()
+      );
+
+    return response
+    } 
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
 module.exports = {
   getCountryApi,
   getCountryById,
   getCountriesByName,
   saveApidata,
+  getCountryByContinent,
 };
