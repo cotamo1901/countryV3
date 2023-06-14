@@ -89,38 +89,38 @@ export const Form = (props) => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setTried(1);
-    setErrors(validation(activity));
-  
-    if (
-      !validation(activity).countries &&
-      !validation(activity).difficulty &&
-      !validation(activity).duration &&
-      !validation(activity).name &&
-      !validation(activity).season
-    ) {
-      setTried(0);
-  
-      try {
-        await axios.post(`http://localhost:3001/activities/`, activity);
-        console.log('Activity created successfully!');
-        
-        setActivity({
-          name: "",
-          difficulty: 0,
-          duration: "",
-          season: "",
-          countries: [],
-        });
-        setTo([]);
-        props.getCountries();
-      } catch (error) {
-        console.log('Error creating activity:', error);
-      }
+  e.preventDefault();
+  setTried(1);
+  setErrors(validation(activity));
+
+  if (
+    !validation(activity).countries &&
+    !validation(activity).difficulty &&
+    !validation(activity).duration &&
+    !validation(activity).name &&
+    !validation(activity).season
+  ) {
+    setTried(0);
+
+    try {
+      await axios.post(`http://localhost:3001/activities/`, activity);
+      console.log('Activity created successfully!');
+      
+      setActivity({
+        name: "",
+        difficulty: 0,
+        duration: "",
+        season: "",
+        countries: [],
+      });
+      setTo([]);
+      props.getCountries();
+    } catch (error) {
+      console.log('Error creating activity:', error);
     }
-  };
-  
+  }
+};
+
 
   const changeActivity = (e) => {
     setActivity({ ...activity, [e.target.name]: e.target.value });
